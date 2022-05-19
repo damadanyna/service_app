@@ -14,7 +14,7 @@ public class Employe implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id_employe;
+    private int id_employe;
 
     @Column(length = 100)
     private String nom_employe;
@@ -32,23 +32,13 @@ public class Employe implements Serializable {
     public Employe() {
     }
 
-    public Employe(String id_employe, String nom_employe, String prenom_employe, String fonction_employe,
-            Date date_naiss_employe, Date date_emboche_employe, double saliare, double commision) {
-        this.id_employe = id_employe;
-        this.nom_employe = nom_employe;
-        this.prenom_employe = prenom_employe;
-        this.fonction_employe = fonction_employe;
-        this.date_naiss_employe = date_naiss_employe;
-        this.date_emboche_employe = date_emboche_employe;
-        this.saliare = saliare;
-        this.commision = commision;
-    }
+    
 
-    public String getId_employe() {
+    public int getId_employe() {
         return this.id_employe;
     }
 
-    public void setId_employe(String id_employe) {
+    public void setId_employe(int id_employe) {
         this.id_employe = id_employe;
     }
 

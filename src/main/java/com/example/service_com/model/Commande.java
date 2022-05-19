@@ -20,18 +20,19 @@ public class Commande implements Serializable {
     private Date date_commande;
 
     @OneToMany
-    private Client client;
-
-    @OneToMany
-    private Article article;
-
-    @OneToMany
-    private Employe employe;
+    private List<Client> liste_client = new ArrayList<>();
 
     @ManyToMany
     private List<Article> liste_article = new ArrayList<>();
 
     public Commande() {
+    }
+
+    public Commande(int num_commande, Date date_commande, List<Client> liste_client, List<Article> liste_article) {
+        this.num_commande = num_commande;
+        this.date_commande = date_commande;
+        this.liste_client = liste_client;
+        this.liste_article = liste_article;
     }
 
     public int getNum_commande() {

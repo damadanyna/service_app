@@ -26,26 +26,26 @@ public class Article_controller {
     Article_repository article_repository;
 
     // Get All Article
-    @GetMapping("/all")
+    @GetMapping("/all_art")
     public List<Article> getAllArticles() {
         return article_repository.findAll();
     }
 
     // Create a new Article
-    @PostMapping("/all")
+    @PostMapping("/all_art")
     public Article createArticle(@Valid @RequestBody Article article) {
         return article_repository.save(article);
     }
 
     // Get a Single Article
-    @GetMapping("/on/{id}")
+    @GetMapping("/on_art/{id}")
     public Article getArticleById(@PathVariable(value = "id") String ArticleId) {
         return article_repository.findById(ArticleId)
                 .orElseThrow(() -> new ResourceNotFoundException("Article", "id", ArticleId));
     }
 
     // Update a Article
-    @PutMapping("/on/{id}")
+    @PutMapping("/on_art/{id}")
     public Article updateArticle(@PathVariable(value = "id") String ArticleId,
             @Valid @RequestBody Article ArticleDetails) {
 
@@ -60,7 +60,7 @@ public class Article_controller {
     }
 
     // Delete a Article
-    @DeleteMapping("/on/{id}")
+    @DeleteMapping("/on_art/{id}")
     public ResponseEntity<?> deleteArticle(@PathVariable(value = "id") String articleId) {
         Article article = article_repository.findById(articleId)
                 .orElseThrow(() -> new ResourceNotFoundException("article", "id", articleId));

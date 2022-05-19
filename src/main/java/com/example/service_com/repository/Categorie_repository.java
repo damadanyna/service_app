@@ -8,8 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface Categorie_repository extends JpaRepository<Categorie, Integer> {
 
-    Optional<Categorie> findById(String categorieId);
-
-    Optional<Categorie> findById(Categorie categorie);
+    Optional<Categorie> findById(Integer code_cat);
 
 }

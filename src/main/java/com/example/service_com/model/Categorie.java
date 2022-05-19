@@ -22,6 +22,13 @@ public class Categorie implements Serializable {
     public Categorie() {
     }
 
+    public Categorie(int code_cat, String nom_cat, String descript_cat) {
+        this.code_cat = code_cat;
+        this.nom_cat = nom_cat;
+        this.descript_cat = descript_cat;
+    }
+
+
     public int getCode_cat() {
         return this.code_cat;
     }

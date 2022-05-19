@@ -16,7 +16,6 @@ import javax.persistence.*;
 @Entity
 public class Article implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 100)
     private String ref_article;
     @Column(length = 100)
@@ -26,20 +25,14 @@ public class Article implements Serializable {
     private double prix_unit_article;
     private double qt_stock_article;
     private boolean disp_article;
-    
-    @OneToMany
-    private Fournisseur fournisseur;
-    
-    @OneToMany
-    private Category category;
 
+    @OneToMany
+    private List<Fournisseur> liste_fournisseur = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "liste_articles",
-                joinColumns = @JoinColumn(name = "id"),
-                inverseJoinColumns = @JoinColumn(name = "qt_commande"))
-    private List<Article> articles= new ArrayList<>();
-    
+    @JoinTable(name = "liste_articles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "qt_commande"))
+    private List<Article> articles = new ArrayList<>();
+
     public Article() {
     }
 

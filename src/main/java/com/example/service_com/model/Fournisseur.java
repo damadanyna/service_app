@@ -9,4 +9,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("fou")
 public class Fournisseur extends Entreprise implements Serializable {
 
+    public Fournisseur() {
+    }
+
 }

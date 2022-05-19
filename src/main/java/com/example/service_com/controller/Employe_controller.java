@@ -26,26 +26,26 @@ public class Employe_controller {
     Employe_repository employe_repository;
 
     // Get All Categorie
-    @GetMapping("/all")
+    @GetMapping("/all_emp")
     public List<Employe> getAllCommandes() {
         return employe_repository.findAll();
     }
 
     // Create a new Commande
-    @PostMapping("/all")
+    @PostMapping("/all_emp")
     public Employe createCommande(@Valid @RequestBody Employe employe) {
         return employe_repository.save(employe);
     }
 
     // Get a Single Commande
-    @GetMapping("/on/{id}")
+    @GetMapping("/on_emp/{id}")
     public Employe getEmployeById(@PathVariable(value = "id") Integer commandeId) {
         return employe_repository.findById(commandeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Article", "id", commandeId));
     }
 
     // Update a Article
-    @PutMapping("/on/{id}")
+    @PutMapping("/on_emp/{id}")
     public Employe updateCommande(@PathVariable(value = "id") Integer employeId,
             @Valid @RequestBody Employe CommandeDetails) {
 
@@ -60,7 +60,7 @@ public class Employe_controller {
     }
 
     // Delete a Note
-    @DeleteMapping("/on/{id}")
+    @DeleteMapping("/on_emp/{id}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Integer noteId) {
         Employe employe = employe_repository.findById(noteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Note", "id", noteId));

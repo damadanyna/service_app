@@ -26,26 +26,26 @@ public class Commande_controller {
     Commande_repository commande_repository;
 
     // Get All Categorie
-    @GetMapping("/all")
+    @GetMapping("/all_com")
     public List<Commande> getAllCommandes() {
         return commande_repository.findAll();
     }
 
     // Create a new Commande
-    @PostMapping("/all")
+    @PostMapping("/all_com")
     public Commande createCommande(@Valid @RequestBody Commande commande) {
         return commande_repository.save(commande);
     }
 
     // Get a Single Commande
-    @GetMapping("/on/{id}")
+    @GetMapping("/on_com/{id}")
     public Commande getCommandeById(@PathVariable(value = "id") Integer commandeId) {
         return commande_repository.findById(commandeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Article", "id", commandeId));
     }
 
     // Update a Article
-    @PutMapping("/on/{id}")
+    @PutMapping("/on_com/{id}")
     public Commande updateCommande(@PathVariable(value = "id") Integer commandeId,
             @Valid @RequestBody Commande CommandeDetails) {
 
@@ -60,7 +60,7 @@ public class Commande_controller {
     }
 
     // Delete a Note
-    @DeleteMapping("/on/{id}")
+    @DeleteMapping("/on_com/{id}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Integer commandeId) {
         Commande commande = commande_repository.findById(commandeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Note", "id", commandeId));

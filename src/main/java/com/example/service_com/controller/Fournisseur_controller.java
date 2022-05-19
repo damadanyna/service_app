@@ -26,26 +26,26 @@ public class Fournisseur_controller {
     Fournisseur_repository fournisseur_repository;
 
     // Get All Categorie
-    @GetMapping("/all")
+    @GetMapping("/all_fourn")
     public List<Fournisseur> getAllCommandes() {
         return fournisseur_repository.findAll();
     }
 
     // Create a new Commande
-    @PostMapping("/all")
+    @PostMapping("/all_fourn")
     public Fournisseur createCommande(@Valid @RequestBody Fournisseur fournisseur) {
         return fournisseur_repository.save(fournisseur);
     }
 
     // Get a Single Commande
-    @GetMapping("/one/{id}")
+    @GetMapping("/one_fourn/{id}")
     public Fournisseur getFournisseurById(@PathVariable(value = "id") Integer fournisseurId) {
         return fournisseur_repository.findById(fournisseurId)
                 .orElseThrow(() -> new ResourceNotFoundException("Fournisseur", "id", fournisseurId));
     }
 
     // Update a Article
-    @PutMapping("/one/{id}")
+    @PutMapping("/one_fourn/{id}")
     public Fournisseur updateCommande(@PathVariable(value = "id") Integer fournisseurId,
             @Valid @RequestBody Fournisseur FournisseurDetails) {
 
@@ -60,7 +60,7 @@ public class Fournisseur_controller {
     }
 
     // Delete a Note
-    @DeleteMapping("/one/{id}")
+    @DeleteMapping("/one_fourn/{id}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Integer noteId) {
         Fournisseur fournisseur = fournisseur_repository.findById(noteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Note", "id", noteId));

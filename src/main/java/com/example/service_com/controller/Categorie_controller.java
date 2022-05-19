@@ -26,31 +26,31 @@ public class Categorie_controller {
     Categorie_repository categorie_repository;
 
     // Get All Categorie
-    @GetMapping("/all")
+    @GetMapping("/all_cat")
     public List<Categorie> getAllCategories() {
         return categorie_repository.findAll();
     }
 
     // Create a new Categorie
-    @PostMapping("/all")
+    @PostMapping("/all_cat")
     public Categorie createCategorie(@Valid @RequestBody Categorie categorie) {
         return categorie_repository.save(categorie);
     }
 
     // Get a Single Categorie
-    @GetMapping("/on/{id}")
-    public Categorie getCategorieById(@PathVariable(value = "id") Integer categorieId) {
+    @GetMapping("/on_cat/{id}")
+    public Categorie getCategorieById(@PathVariable(value = "code_cat") Integer categorieId) {
         return categorie_repository.findById(categorieId)
-                .orElseThrow(() -> new ResourceNotFoundException("Article", "id", categorieId));
+                .orElseThrow(() -> new ResourceNotFoundException("categorie", "code_cat", categorieId));
     }
 
     // Update a Article
-    @PutMapping("/on/{id}")
-    public Categorie updateCategorie(@PathVariable(value = "id") Integer categorieId,
+    @PutMapping("/on_cat/{id}")
+    public Categorie updateCategorie(@PathVariable(value = "code_cat") Integer categorieId,
             @Valid @RequestBody Categorie CategorieDetails) {
 
         Categorie categorie = categorie_repository.findById(categorieId)
-                .orElseThrow(() -> new ResourceNotFoundException("Categorie", "id", categorieId));
+                .orElseThrow(() -> new ResourceNotFoundException("categorie", "code_cat", categorieId));
 
         categorie.setDescript_cat(CategorieDetails.getDescript_cat());
         categorie.setNom_cat(CategorieDetails.getNom_cat());
@@ -60,10 +60,10 @@ public class Categorie_controller {
     }
 
     // Delete a Categorie
-    @DeleteMapping("/on/{id}")
-    public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Integer noteId) {
+    @DeleteMapping("/on_cat/{code_cat}")
+    public ResponseEntity<?> deleteNote(@PathVariable(value = "code_cat") Integer noteId) {
         Categorie categorie = categorie_repository.findById(noteId)
-                .orElseThrow(() -> new ResourceNotFoundException("Note", "id", noteId));
+                .orElseThrow(() -> new ResourceNotFoundException("Note", "code_cat", noteId));
 
         categorie_repository.delete(categorie);
 
