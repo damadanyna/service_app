@@ -33,6 +33,9 @@ public class Article implements Serializable {
     @JoinTable(name = "liste_articles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "qt_commande"))
     private List<Article> articles = new ArrayList<>();
 
+    @OneToOne
+    private Commande commande;
+
     public Article() {
     }
 
