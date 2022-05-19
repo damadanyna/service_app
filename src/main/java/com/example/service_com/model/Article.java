@@ -26,15 +26,15 @@ public class Article implements Serializable {
     private double qt_stock_article;
     private boolean disp_article;
 
-    @OneToMany
-    private List<Fournisseur> liste_fournisseur = new ArrayList<>();
-
     @ManyToMany
-    @JoinTable(name = "liste_articles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "qt_commande"))
+    @JoinTable(name = "liste_articles", joinColumns = @JoinColumn(name = "ref_article"), inverseJoinColumns = @JoinColumn(name = "qt_commande"))
     private List<Article> articles = new ArrayList<>();
 
     @OneToOne
     private Commande commande;
+
+    @ManyToOne
+    private Fournisseur fournisseur;
 
     public Article() {
     }
