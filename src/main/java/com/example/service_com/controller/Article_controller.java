@@ -10,17 +10,14 @@ import com.example.service_com.resourceNotFoundException.ResourceNotFoundExcepti
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/article")
+@RequestMapping("/api")
 public class Article_controller {
     @Autowired
     Article_repository article_repository;
@@ -33,7 +30,7 @@ public class Article_controller {
 
     // Create a new Article
     @PostMapping("/all_art")
-    public Article createArticle(@Valid @RequestBody Article article) {
+    public Article createArticle(@Valid Article article) {
         return article_repository.save(article);
     }
 
@@ -45,9 +42,9 @@ public class Article_controller {
     }
 
     // Update a Article
-    @PutMapping("/on_art/{id}")
+    @PostMapping("/on_art/{id}")
     public Article updateArticle(@PathVariable(value = "id") String ArticleId,
-            @Valid @RequestBody Article ArticleDetails) {
+            @Valid Article ArticleDetails) {
 
         Article Article = article_repository.findById(ArticleId)
                 .orElseThrow(() -> new ResourceNotFoundException("Article", "id", ArticleId));
@@ -60,7 +57,7 @@ public class Article_controller {
     }
 
     // Delete a Article
-    @DeleteMapping("/on_art/{id}")
+    @PostMapping("/del_art/{id}")
     public ResponseEntity<?> deleteArticle(@PathVariable(value = "id") String articleId) {
         Article article = article_repository.findById(articleId)
                 .orElseThrow(() -> new ResourceNotFoundException("article", "id", articleId));

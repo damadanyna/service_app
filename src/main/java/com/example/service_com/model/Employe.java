@@ -2,12 +2,14 @@ package com.example.service_com.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Employe implements Serializable {
@@ -29,10 +31,11 @@ public class Employe implements Serializable {
     private double saliare;
     private double commision;
 
+    @OneToMany(mappedBy = "employe")
+    List<Commande> liste_commande;
+
     public Employe() {
     }
-
-    
 
     public int getId_employe() {
         return this.id_employe;

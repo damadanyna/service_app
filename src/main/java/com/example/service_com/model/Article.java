@@ -5,11 +5,8 @@ import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.List;
-import java.util.Locale.Category;
 
 import javax.persistence.*;
 
@@ -30,11 +27,14 @@ public class Article implements Serializable {
     @JoinTable(name = "liste_articles", joinColumns = @JoinColumn(name = "ref_article"), inverseJoinColumns = @JoinColumn(name = "qt_commande"))
     private List<Article> articles = new ArrayList<>();
 
-    @OneToOne
-    private Commande commande;
-
     @ManyToOne
     private Fournisseur fournisseur;
+
+    @ManyToOne
+    private Categorie categorie;
+
+    @OneToMany(mappedBy = "article")
+    private List<Commande> liste_commande = new ArrayList<>();
 
     public Article() {
     }

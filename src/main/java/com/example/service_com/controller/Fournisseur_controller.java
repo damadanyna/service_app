@@ -14,13 +14,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/fournisseur")
+@RequestMapping("/api")
 public class Fournisseur_controller {
     @Autowired
     Fournisseur_repository fournisseur_repository;
@@ -33,7 +31,7 @@ public class Fournisseur_controller {
 
     // Create a new Commande
     @PostMapping("/all_fourn")
-    public Fournisseur createCommande(@Valid @RequestBody Fournisseur fournisseur) {
+    public Fournisseur createCommande(@Valid Fournisseur fournisseur) {
         return fournisseur_repository.save(fournisseur);
     }
 
@@ -45,9 +43,9 @@ public class Fournisseur_controller {
     }
 
     // Update a Article
-    @PutMapping("/one_fourn/{id}")
+    @PostMapping("/add_fourn/{id}")
     public Fournisseur updateCommande(@PathVariable(value = "id") Integer fournisseurId,
-            @Valid @RequestBody Fournisseur FournisseurDetails) {
+            @Valid Fournisseur FournisseurDetails) {
 
         Fournisseur fournisseur = fournisseur_repository.findById(fournisseurId)
                 .orElseThrow(() -> new ResourceNotFoundException("Fournisseur", "id", fournisseurId));
@@ -60,7 +58,7 @@ public class Fournisseur_controller {
     }
 
     // Delete a Note
-    @DeleteMapping("/one_fourn/{id}")
+    @PostMapping("/one_fourn/{id}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Integer noteId) {
         Fournisseur fournisseur = fournisseur_repository.findById(noteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Note", "id", noteId));

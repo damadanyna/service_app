@@ -1,16 +1,14 @@
 package com.example.service_com.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Commande implements Serializable {
@@ -22,8 +20,11 @@ public class Commande implements Serializable {
     @ManyToOne
     private Client client;
 
-    @OneToMany(mappedBy = "commande")
-    private List<Article> liste_article = new ArrayList<>();
+    @ManyToOne
+    private Employe employe;
+
+    @OneToOne
+    private Article article;
 
     public Commande() {
     }

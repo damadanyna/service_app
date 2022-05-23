@@ -9,5 +9,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface Client_repository extends JpaRepository<Client, Integer> {
 
     Optional<Client> findById(Integer clientId);
-
 }

@@ -2,6 +2,7 @@ package com.example.service_com.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,17 +13,31 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type_en",length = 3)
+@DiscriminatorColumn(name = "type_en", length = 3)
 public abstract class Entreprise implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_en;
+    @Column(length = 150)
     private String nom_en;
+    @Column(length = 150)
     private String adresse_en;
-    private int code_en;
+    @Column(nullable = true)
+    private int code_postal_en;
+    @Column(length = 150)
     private String contacte_en;
+    @Column(length = 150)
+    private String ville;
 
     public Entreprise() {
+    }
+
+
+    public Entreprise(String nom_en, String adresse_en, String contacte_en, String ville) {
+        this.nom_en = nom_en;
+        this.adresse_en = adresse_en;
+        this.contacte_en = contacte_en;
+        this.ville = ville;
     }
 
     public int getId_en() {
@@ -49,12 +64,12 @@ public abstract class Entreprise implements Serializable {
         this.adresse_en = adresse_en;
     }
 
-    public int getCode_en() {
-        return this.code_en;
+    public int getCode_postal_en() {
+        return this.code_postal_en;
     }
 
-    public void setCode_en(int code_en) {
-        this.code_en = code_en;
+    public void setCode_postal_en(int code_postal_en) {
+        this.code_postal_en = code_postal_en;
     }
 
     public String getContacte_en() {
@@ -63,6 +78,14 @@ public abstract class Entreprise implements Serializable {
 
     public void setContacte_en(String contacte_en) {
         this.contacte_en = contacte_en;
+    }
+
+    public String getVille() {
+        return this.ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
     }
 
 }
