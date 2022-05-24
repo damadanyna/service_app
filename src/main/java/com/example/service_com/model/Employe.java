@@ -26,8 +26,10 @@ public class Employe implements Serializable {
 
     @Column(length = 100)
     private String fonction_employe;
-    private Date date_naiss_employe;
-    private Date date_emboche_employe;
+    @Column(length = 100)
+    private String date_naiss_employe;
+    @Column(length = 100)
+    private String date_emboche_employe;
     private double saliare;
     private double commision;
 
@@ -35,6 +37,18 @@ public class Employe implements Serializable {
     List<Commande> liste_commande;
 
     public Employe() {
+    }
+
+    public Employe(int id_employe, String nom_employe, String prenom_employe, String fonction_employe, String date_naiss_employe, String date_emboche_employe, double saliare, double commision, List<Commande> liste_commande) {
+        this.id_employe = id_employe;
+        this.nom_employe = nom_employe;
+        this.prenom_employe = prenom_employe;
+        this.fonction_employe = fonction_employe;
+        this.date_naiss_employe = date_naiss_employe;
+        this.date_emboche_employe = date_emboche_employe;
+        this.saliare = saliare;
+        this.commision = commision;
+        this.liste_commande = liste_commande;
     }
 
     public int getId_employe() {
@@ -69,19 +83,19 @@ public class Employe implements Serializable {
         this.fonction_employe = fonction_employe;
     }
 
-    public Date getDate_naiss_employe() {
+    public String getDate_naiss_employe() {
         return this.date_naiss_employe;
     }
 
-    public void setDate_naiss_employe(Date date_naiss_employe) {
+    public void setDate_naiss_employe(String date_naiss_employe) {
         this.date_naiss_employe = date_naiss_employe;
     }
 
-    public Date getDate_emboche_employe() {
+    public String getDate_emboche_employe() {
         return this.date_emboche_employe;
     }
 
-    public void setDate_emboche_employe(Date date_emboche_employe) {
+    public void setDate_emboche_employe(String date_emboche_employe) {
         this.date_emboche_employe = date_emboche_employe;
     }
 
@@ -99,6 +113,14 @@ public class Employe implements Serializable {
 
     public void setCommision(double commision) {
         this.commision = commision;
+    }
+
+    public List<Commande> getListe_commande() {
+        return this.liste_commande;
+    }
+
+    public void setListe_commande(List<Commande> liste_commande) {
+        this.liste_commande = liste_commande;
     }
 
 }

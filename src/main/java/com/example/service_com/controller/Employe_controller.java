@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/employe")
+@RequestMapping("/api")
 public class Employe_controller {
     @Autowired
     Employe_repository employe_repository;
@@ -33,7 +33,7 @@ public class Employe_controller {
 
     // Create a new Commande
     @PostMapping("/all_emp")
-    public Employe createCommande(@Valid @RequestBody Employe employe) {
+    public Employe createCommande(@Valid  Employe employe) {
         return employe_repository.save(employe);
     }
 
@@ -45,22 +45,26 @@ public class Employe_controller {
     }
 
     // Update a Article
-    @PutMapping("/on_emp/{id}")
+    @PostMapping("/on_emp/{id}")
     public Employe updateCommande(@PathVariable(value = "id") Integer employeId,
-            @Valid @RequestBody Employe CommandeDetails) {
+            @Valid  Employe CommandeDetails) {
 
         Employe employe = employe_repository.findById(employeId)
                 .orElseThrow(() -> new ResourceNotFoundException("commande", "id", employeId));
-
-        employe.setFonction_employe(CommandeDetails.getFonction_employe());
-        employe.setNom_employe(CommandeDetails.getNom_employe());
+                employe.setSaliare(employe.getSaliare());
+                employe.setCommision(employe.getCommision());
+                employe.setNom_employe(employe.getNom_employe());
+                employe.setPrenom_employe(employe.getPrenom_employe());
+                employe.setFonction_employe(employe.getFonction_employe());
+                employe.setDate_naiss_employe(employe.getDate_naiss_employe());
+                employe.setDate_emboche_employe(employe.getDate_emboche_employe());
 
         Employe updatedEmploye = employe_repository.save(employe);
         return updatedEmploye;
     }
 
     // Delete a Note
-    @DeleteMapping("/on_emp/{id}")
+    @PostMapping("/del_emp/{id}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Integer noteId) {
         Employe employe = employe_repository.findById(noteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Note", "id", noteId));

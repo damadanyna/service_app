@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/categorie")
+@RequestMapping("/api")
 public class Commande_controller {
     @Autowired
     Commande_repository commande_repository;
@@ -33,7 +33,7 @@ public class Commande_controller {
 
     // Create a new Commande
     @PostMapping("/all_com")
-    public Commande createCommande(@Valid @RequestBody Commande commande) {
+    public Commande createCommande(@Valid Commande commande) {
         return commande_repository.save(commande);
     }
 
@@ -45,7 +45,7 @@ public class Commande_controller {
     }
 
     // Update a Article
-    @PutMapping("/on_com/{id}")
+    @PostMapping("/on_com/{id}")
     public Commande updateCommande(@PathVariable(value = "id") Integer commandeId,
             @Valid @RequestBody Commande CommandeDetails) {
 
@@ -53,14 +53,13 @@ public class Commande_controller {
                 .orElseThrow(() -> new ResourceNotFoundException("commande", "id", commandeId));
 
         commande.setDate_commande(CommandeDetails.getDate_commande());
-        commande.setNum_commande(CommandeDetails.getNum_commande());
 
         Commande updatedCommande = commande_repository.save(commande);
         return updatedCommande;
     }
 
     // Delete a Note
-    @DeleteMapping("/on_com/{id}")
+    @PostMapping("/del_com/{id}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Integer commandeId) {
         Commande commande = commande_repository.findById(commandeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Note", "id", commandeId));

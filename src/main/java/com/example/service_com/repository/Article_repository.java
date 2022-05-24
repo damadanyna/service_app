@@ -6,8 +6,8 @@ import com.example.service_com.model.Article;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface Article_repository extends JpaRepository<Article,String>{
+public interface Article_repository extends JpaRepository<Article,Integer>{
 
-    Optional<Article> findById(String articleId);
+    Optional<Article> findById(Integer articleId);
     
 }

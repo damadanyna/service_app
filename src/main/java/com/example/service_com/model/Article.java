@@ -13,8 +13,8 @@ import javax.persistence.*;
 @Entity
 public class Article implements Serializable {
     @Id
-    @Column(length = 100)
-    private String ref_article;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int ref_article ;
     @Column(length = 100)
     private String nom_article;
     @Column(length = 100)
@@ -39,11 +39,24 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public String getRef_article() {
+    public Article(int ref_article, String nom_article, String lib_article, double prix_unit_article, double qt_stock_article, boolean disp_article, List<Article> articles, Fournisseur fournisseur, Categorie categorie, List<Commande> liste_commande) {
+        this.ref_article = ref_article;
+        this.nom_article = nom_article;
+        this.lib_article = lib_article;
+        this.prix_unit_article = prix_unit_article;
+        this.qt_stock_article = qt_stock_article;
+        this.disp_article = disp_article;
+        this.articles = articles;
+        this.fournisseur = fournisseur;
+        this.categorie = categorie;
+        this.liste_commande = liste_commande;
+    }
+
+    public int getRef_article() {
         return this.ref_article;
     }
 
-    public void setRef_article(String ref_article) {
+    public void setRef_article(int ref_article) {
         this.ref_article = ref_article;
     }
 
@@ -89,6 +102,38 @@ public class Article implements Serializable {
 
     public void setDisp_article(boolean disp_article) {
         this.disp_article = disp_article;
+    }
+
+    public List<Article> getArticles() {
+        return this.articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
+
+    public Fournisseur getFournisseur() {
+        return this.fournisseur;
+    }
+
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
+    }
+
+    public Categorie getCategorie() {
+        return this.categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
+    public List<Commande> getListe_commande() {
+        return this.liste_commande;
+    }
+
+    public void setListe_commande(List<Commande> liste_commande) {
+        this.liste_commande = liste_commande;
     }
 
 }

@@ -30,40 +30,43 @@ public class Article_controller {
 
     // Create a new Article
     @PostMapping("/all_art")
-    public Article createArticle(@Valid Article article) {
+    public Article createArticle( Article article) {
         return article_repository.save(article);
     }
 
     // Get a Single Article
     @GetMapping("/on_art/{id}")
-    public Article getArticleById(@PathVariable(value = "id") String ArticleId) {
+    public Article getArticleById(@PathVariable(value = "id") Integer ArticleId) {
         return article_repository.findById(ArticleId)
                 .orElseThrow(() -> new ResourceNotFoundException("Article", "id", ArticleId));
     }
 
     // Update a Article
     @PostMapping("/on_art/{id}")
-    public Article updateArticle(@PathVariable(value = "id") String ArticleId,
-            @Valid Article ArticleDetails) {
+    public Article updateArticle(@PathVariable(value = "id") Integer ArticleId,
+             Article ArticleDetails) {
 
-        Article Article = article_repository.findById(ArticleId)
+        Article article = article_repository.findById(ArticleId)
                 .orElseThrow(() -> new ResourceNotFoundException("Article", "id", ArticleId));
 
-        Article.setRef_article(ArticleDetails.getRef_article());
-        Article.setQt_stock_article(ArticleDetails.getQt_stock_article());
+                article.setLib_article(article.getLib_article());
+                article.setNom_article(article.getNom_article());
+                article.setPrix_unit_article(article.getPrix_unit_article());
+                article.setQt_stock_article(article.getQt_stock_article());
+                article.setCategorie(article.getCategorie());
+                article.setFournisseur(article.getFournisseur());
+                article.setDisp_article(article.getDisp_article());
 
-        Article updatedArticle = article_repository.save(Article);
+        Article updatedArticle = article_repository.save(article);
         return updatedArticle;
     }
 
     // Delete a Article
     @PostMapping("/del_art/{id}")
-    public ResponseEntity<?> deleteArticle(@PathVariable(value = "id") String articleId) {
+    public ResponseEntity<?> deleteArticle(@PathVariable(value = "id") Integer articleId) {
         Article article = article_repository.findById(articleId)
                 .orElseThrow(() -> new ResourceNotFoundException("article", "id", articleId));
-
         article_repository.delete(article);
-
         return ResponseEntity.ok().build();
     }
 }
