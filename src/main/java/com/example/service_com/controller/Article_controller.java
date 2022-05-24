@@ -2,7 +2,6 @@ package com.example.service_com.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
 
 import com.example.service_com.model.Article;
 import com.example.service_com.repository.Article_repository;
